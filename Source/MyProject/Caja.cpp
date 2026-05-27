@@ -31,15 +31,17 @@ void ACaja::Tick(float DeltaTime)
 
 	if (ismoving) {
 		FVector newLocation = GetActorLocation();
-		if(movedirection == Directions::Arriba || movedirection == Directions::Abajo) {
-			//velocidad *= (movedirection == Directions::Arriba) ? 1 : -1;
-			newLocation.Y += (movedirection == Directions::Arriba) ? (velocidad * DeltaTime) : (-velocidad * DeltaTime);
-			//newLocation.Y += (velocidad * DeltaTime);
+		if(movedirection == Directions::Derecha) {
+			newLocation.Y += velocidad * DeltaTime;
 		}
-		else {
-			//velocidad *= (movedirection == Directions::Derecha) ? 1 : -1;
-			newLocation.X += (movedirection == Directions::Derecha) ? (velocidad * DeltaTime) : (-velocidad * DeltaTime);
-			//newLocation.X += velocidad * DeltaTime;
+		else if (movedirection == Directions::Izquierda){
+			newLocation.Y -= velocidad * DeltaTime;
+		}
+		else if (movedirection == Directions::Arriba) {
+			newLocation.X += velocidad * DeltaTime;
+		}
+		else if (movedirection == Directions::Abajo) {
+			newLocation.X -= velocidad * DeltaTime;
 		}
 		SetActorLocation(newLocation);
 	}
